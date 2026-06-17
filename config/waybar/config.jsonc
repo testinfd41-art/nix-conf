@@ -1,0 +1,198 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "height": 30, 
+    "spacing": 4, 
+    "modules-left": [
+        "custom/img",
+        "custom/separator",
+        "niri/workspaces",
+        "custom/separator",
+        "cpu",
+	"memory",
+	"temperature",
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+	"custom/notification",
+        "pulseaudio",
+        "backlight",
+        "custom/separator",
+        "network",
+        "bluetooth",
+        "custom/separator",
+        "group/power",
+    ],
+    "niri/window": {
+        "rewrite": {
+            "": "Desktop",
+        },
+        "max-length": 40,
+        "separate-outputs": true
+    },
+  	"niri/workspaces": {
+		"format": "{icon}",
+		"format-icons": {
+ 			"active": "",
+			"default": ""
+		},
+    },
+    "custom/img": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "~/.local/bin/theme"
+    },
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+  },
+  "group/power": {
+        "orientation": "inherit",
+        "drawer": {
+          "transition-duration": 500,
+          "transition-left-to-right": false
+        },
+        "modules": [
+          "battery",
+          "power-profiles-daemon"
+        ]
+    },
+    "clock": {
+	"interval": 1,
+    //"format": " {:%I:%M %p}", // AM PM format
+    "format": " {:%H:%M}",// 24H
+	"format-alt": " {:%H:%M   %Y, %d %B, %A}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "year",
+		"mode-mon-col": 3,
+		"weeks-pos": "right",
+		"on-scroll": 1,
+		"format": {
+			"months": "<span color='#ffead3'><b>{}</b></span>",
+			"days": "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+			"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	}
+},
+    "cpu": {
+        "format": " {usage}%",
+        "on-click": "foot btop",
+        "interval": 1
+    },
+    "memory": {
+        "format": " {used}GiB"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+    },
+    "backlight": {
+        "format": "󰖨 {percent}%"
+    },
+    "battery": {
+       "states": {
+         "good": 95,
+         "warning": 30,
+         "critical": 15
+       },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{timeTo} {capacity}% | {power} W"
+    },
+
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "network": {
+        "format": "{icon}",
+        "format-icons": {
+          "wifi": [
+            "󰤨"
+          ],
+          "ethernet": [
+            "󰈀"
+          ],
+          "disconnected": [
+            "󰖪"
+          ]
+        },
+        "format-wifi": "󰤥",
+        "format-disabled": "󱚼",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "format-linked": "󰈁",
+        "interval": 5,
+        "tooltip-format": "{ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)   \n{ipaddr} | {frequency} MHz{icon} ",
+        "tooltip-format-ethernet": "{ifname} 󰈀 \n{ipaddr} | {frequency} MHz{icon} ",
+        "tooltip-format-disconnected": "Not Connected to any type of Network",
+        "tooltip": true,
+        "on-click": "foot sh -c 'sudo nmtui'"
+    },
+    "bluetooth": {
+        "format-on": "",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-connected": "<b></b>",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+    "custom/notification": {
+        "tooltip": true,
+        "format": "<span size='13pt'>{icon} </span>",
+        "format-icons": {
+          "notification": "󱅫",
+          "none": "󰂜",
+          "dnd-notification": "󰂠",
+          "dnd-none": "󰪓",
+          "inhibited-notification": "󰂛",
+          "inhibited-none": "󰪑",
+          "dnd-inhibited-notification": "󰂛",
+          "dnd-inhibited-none": "󰪑"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+}
+
+
+

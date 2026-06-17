@@ -1,0 +1,76 @@
+@import "colors.css";
+
+* {
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 1rem;
+    font-weight:bold;
+    min-width: 8px;
+    min-height: 0px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background-color: @main-bg;
+    color: @main-fg;
+}
+
+#workspaces {
+    background-color: @main-bg;
+    color:@wb-act-fg;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: @main-fg;
+}
+#workspaces button.active {
+    background-color: transparent;
+    color: @main-fg;
+}
+
+#workspaces button:hover {
+    background: @wb-hvr-fg;
+}
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#bluetooth,
+#pulseaudio,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 7px;
+    color: @main-fg;
+}
+
+#battery {
+    font-size: 18px;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+#custom-separator {
+    color: @wb-hvr-fg;
+}
+#custom-img {
+    font-size: 1.5rem;
+}
+
+
+
