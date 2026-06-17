@@ -73,6 +73,7 @@
     swayidle
     pkgs.nautilus
     loupe
+    evince
   ];
 
   fonts.packages = with pkgs; [
